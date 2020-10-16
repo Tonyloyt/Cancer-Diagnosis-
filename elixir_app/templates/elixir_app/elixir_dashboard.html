@@ -1,0 +1,309 @@
+{% load static %}
+<html>
+    <head>
+<style>
+
+.floating__input:focus + .floating__label::after {
+  transform: scale3d(1, 1, 1);
+  opacity: 1;
+}
+
+.floating__input:placeholder-shown + .floating__label::before {
+  transform: translate3d(0, -2.2rem, 0) scale3d(1, 1, 1);
+}
+
+.floating__label::before,
+.floating__input:focus + .floating__label::before {
+  transform: translate3d(0, -5.12rem, 0) scale3d(0.82, 0.82, 1);
+}
+
+.floating__input:focus + .floating__label::before {
+  color: var(--color__accent);
+}
+
+
+.nav ul {
+  list-style: none; 
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}
+.nav li {
+    font-family: 'Oswald', sans-serif;
+    width: auto;
+    border-bottom: none;
+    height: 50px;
+	margin:0 30px 0 30px;
+    line-height: 50px;
+    font-size: 1.2em; 
+  }
+ 
+  /* Option 1 - Display Inline */
+  .nav li {
+    display: inline-block;
+    margin-right: -4px;
+  }
+.nav a {
+  text-decoration: none;
+  color: grey;
+  display: block;
+  transition: .3s background-color;
+}
+ 
+.nav a:hover {
+  color: #005f5f;
+}
+ 
+.nav a.active { 
+  color: #fff;
+  cursor: default;
+}
+ 
+.nav2 li{
+	display:block !important;
+	height: auto;
+	line-height: 1.5em;
+	margin:0 0px 0 0px;
+}
+
+.nav2 a.active { 
+   color: grey;
+}
+.loadly_titles_sub3{
+	font-family:'Merriweather Sans', sans-serif; 
+	font-size:2em;
+	font-weight:800;
+	color:rgb(7, 45, 54);
+	padding-top: 10px;
+	}
+
+.loadly_titles_sub2{
+    font-family:'Merriweather Sans', sans-serif; 
+    font-size:2.0em;
+    font-weight:800;
+    color: grey;
+  }
+  .cinput{
+      border: 1px solid #ccc;
+      border-radius: 1px;
+      height: 35px;
+      font-size: 15px;
+  }
+  .loadly_contents_fonts{
+	font-family:'Montserrat',sans-serif; 
+	color:#776e64; 
+	font-size:1.2em; 
+	line-height:1.5em;
+	
+	}
+	.loadly_contents_fonts1{
+	font-family:'Montserrat',sans-serif; 
+	color:#776e64; 
+	font-size:1.2em; 
+	line-height:1.5em;
+	padding-top: 10px;
+	display: inline-block; 
+	vertical-align: top;
+	}
+	.loadly_contents_fonts2{
+	font-family:'Montserrat',sans-serif; 
+	color:#776e64; 
+	font-size:1.2em; 
+	line-height:1.5em;
+	padding-top: 20px;
+    }
+    .loadly_contents_fonts{
+   	font-family:  'montserrat', sans-serif;
+   	color: #776e64;
+   	font-size: 1.2em;
+   	line-height: 1.5em;
+   	
+   }
+   .loadly_titles_sub44{
+   	font-family: merriweather sans,sans-serif;
+   	font-size: 2em;
+   	font-weight: 800;
+   	color: #453536;
+   }
+   .exilir_upload{
+    font-family: merriweather sans,sans-serif;
+    font-size: 1.5em;
+    color: rgb(61, 9, 9);
+    /* font-weight: 800; */
+   }
+
+</style>
+
+<script>
+    function showprofile(){
+        reset();
+		 document.getElementById("div_profile").style.display="inline-block";
+		 document.getElementById("div_patientdetails").style.display="none";
+     document.getElementById("div_mna").style.display="none";
+        
+	 }
+     function showpatientdetails(){
+        reset();
+		 document.getElementById("div_profile").style.display="none";
+		 document.getElementById("div_patientdetails").style.display="inline-block";
+     document.getElementById("div_mna").style.display="none";
+        
+	 }
+     function showDiagnosis(){
+
+        reset();
+		 document.getElementById("div_profile").style.display="none";
+		 document.getElementById("div_patientdetails").style.display="none";
+     document.getElementById("div_mna").style.display="inline-block";
+        
+	 }
+     
+
+     function reset(){
+		 document.getElementById("div_profile").style.display="none";
+		 document.getElementById("div_patientdetails").style.display="none";
+     document.getElementById("div_mna").style.display="none";
+	 }
+
+</script>
+    </head>
+
+    <body>
+        <div style="display: inline-block; width: 25%; height: 100%; background: rgb(2, 49, 53);; vertical-align:top;">
+        <div style="margin-left: 50px; margin-top: 30px;">
+            <span class="loadly_titles_sub2"> Cancer <br /> Diagnosis</span>
+
+        </div>
+        <div class="nav nav2" style="margin-left: 50px;">
+            <ul>
+                <li style="padding-top: 35px;"> <a href="javascript:showprofile()"> Why Elixir</a> </li>
+                
+                <li style="padding-top: 5px;"> <a href="javascript:showpatientdetails()"> Patient Details</a> </li>
+                <li style="padding-top: 5px;"> <a href="javascript:showDiagnosis()"> Diagnosis</a> </li>
+                <li style="margin-top: 300px"> <a href="#"> Logout </a> </li>
+            </ul>
+        </div>
+
+
+        </div>
+        <div id="div_profile" style="display: inline-block; width: 70%; height: 100%; vertical-align:top;">
+           <div style="margin-left: 90px; margin-top: 20px;" >
+            <div> <span class="loadly_titles_sub3" >Findings</span></div>
+            <div style="margin-top: 20px;"> <span class=""> <p>Cancer has become a major threat in Africa, with a 45% increase of deaths since 2000, and it now kills half a million people each year, and even worse breast 
+              cancer & cervical cancer alone now cause 1 out of 5 cancer deaths in subsaharan Africa.</p> 
+              <p>In Tanzania alone cancer covers more than 10% of the top 50 most causes of deaths,                                                                   This is mainly due to poor screening methods and late-stage cancer detection, which leads to high cost for treatment  and risk of death to a patient, not only in Tanzania but in most parts of Africa also, there is a huge disparity between Doctor to patient ratio, and there is low awareness of symptoms and diagnosis of cancer in most communities which 
+                lead cancer to be among the major health threats in the African continent.</p>
+            </span></div>
+           </div>
+           <div style="margin-left: 90px; margin-top: 20px;">
+            <div> <span class="loadly_titles_sub3" >How it works</span></div>
+            <div style="margin-top: 20px;"> <span class=""> <p> <b>Elixir</b> intends to reduce the cancer threat in the world, focusing mostly in Tanzania and Africa in general.                               The Elixir web app offers a deep-learning approach (artificial intelligence)  to the cancer detection and diagnosis. Using  an integrated Artificial-Neural-Network model trained with approximately 200,000 microscopic images, Elixir provides a real-time cancer detection through microscopic images.                                      The Elixir team chose to use microscopic images instead of X-ray, since unlike x-ray images microscopic images have less blind-spots and enables early detection of cancerous cells if present.</p> 
+              <p>We believe that through early cancer detection and diagnosis, by using our web app we can reach more people and test, provide results and assist doctors to reach out more patients and reduce the risks caused by cancer 
+                thus improving the health sector and the welfare of the people.</p>
+            </span></div>
+           </div>
+        </div>
+
+
+
+        <div id="div_patientdetails" style="display: none; width: 70%; height: 100%; vertical-align:top;">
+
+            <div style="margin-top: 20px; margin-left: 70px; margin-bottom: 35px;">
+
+                <div> <span class="loadly_titles_sub3" >Patient Details</span></div>
+         <form role="form" method="POST"  >
+                        {% csrf_token %}
+                        {{patient_form}}
+        <!-- <div>
+          
+            <div style="display: block; margin-top: 10px;">
+				<input id="cardid" class="cinput" name="cardid" type="text" placeholder="Card ID " required/>
+				<label for="cardid" class="floating__label" data-content="Card ID"> 
+               </div>
+        
+               <div>
+                   <div style="display: block; margin-top: 10px;">
+                    <input id="blood" class="cinput" name="blood" type="text" placeholder="Blood Group" />
+				<label for="llood" class="floating__label" data-content="Blood Group"> 
+                
+                </div>
+                <div style="display: block; margin-top: 10px;"> 
+                    <input id="age" class="cinput" name="age" type="text" placeholder="Age" required/>
+                    <label for="age" class="floating__label" data-content="Age"> 
+                </div>
+              
+                <div style="display: block; margin-top: 10px;" > 
+                    <label for="gender">Gender</label>
+                    <select id="order_status" class="cinput" name="gender" required>
+                        <option value="picked">Male</p>
+                        <option value="washed">Female</p>
+
+                       </select>
+                </div>
+               </div>
+
+               <div style="display: block; margin-top: 10px;">
+				<input id="address" class="cinput" name="address" type="address" placeholder="Address" required/>
+				<label for="address" class="floating__label" data-content="Address"> 
+               </div>
+
+               <div style="display: block; margin-top: 10px;">
+                <input id="phone" class="cinput" name="phone" type="phone" placeholder="phone" required/>
+            <label for="phone" class="floating__label" data-content="phone">
+            </div>
+            </div> -->
+            {% for message in messages %}
+            <h2 style="color: green;"> {{ message }}</h2>
+           
+            {% endfor %}
+            
+            <p >
+                <input type="submit" name="update" class="button  loadly_contents_fonts " value="Save patient Datails" />
+              </p>
+              {% if messages %}
+              {% for message in messages %}
+              <h2 style="color: chartreuse;"> {{ message }}</h2>
+             
+              {% endfor %}
+              {% endif %}
+
+            </form>
+
+            </div>
+        </div>
+        
+
+        <!-- <div id="div_diagnosis" style="display: inline-block; width: 70%; height: 100%; vertical-align:top;"> -->
+        <div id="div_mna" style="display: inline-block; width: 70%; height: 100%; vertical-align: top;">
+              <div style=" margin-left: 20px;"> 
+                  <div style="margin-top: 10px;"><span class="loadly_titles_sub3" >Cancer Diagnosis</span></div>
+                  <div style="margin-top: 10px; margin-left: 10px;">
+                    few line of description
+                  </div>
+                  <div style="margin-top: 20px; margin-left: 20px;">
+                    <div style="display: inline-block; width: 37%; vertical-align: top;"><img src="/static/images/cancer3.jpg'" alt="" width="300" height="200"> </div> 
+                    <div style="display: inline-block; width: 30%; margin-left: 20px; vertical-align: top; margin-left: 50px;">
+                      <div class="exilir_upload">Upload an X-ray Image</div>
+
+
+                      <form role="form" method="POST"  enctype="multipart/form-data">
+                        {% csrf_token %}
+                      <div style="border:2px dotted black; margin-top: 35px;"> <input type="file" id="img" name="img" accept="image/*"></div>
+                      <div style="margin-top: 20px; margin-left: 50px;">
+                        <input type="submit" name="update" class="button  loadly_contents_fonts" value="Get Results" />
+                        </div>
+                      </form>
+
+                    </div>
+                    <div style="display: inline-block; width: 37%; margin-top: 35px; vertical-align: top;"> <img src="cancer2.jpg" alt="" width="300" height="200"> </div> 
+                    <div style="display: inline-block; width: 30%;  margin-top: 40px; margin-left: 20px; vertical-align: top; margin-left: 50px;">
+                      <div class="exilir_upload"> Results  </div>
+                     
+                    </div>
+        
+        </div>
+
+
+    </body>
+</html>
+

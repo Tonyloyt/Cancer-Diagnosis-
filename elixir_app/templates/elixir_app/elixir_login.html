@@ -1,0 +1,107 @@
+
+<html>
+    <head>
+        <style>
+            .body{
+                background: rgb(7, 45, 54);
+            }
+
+	  .box_shadow{
+		    -webkit-box-shadow: 3px 5px 34px 2px rgba(224,221,224,1);
+			-moz-box-shadow: 3px 5px 34px 2px rgba(224,221,224,1);
+			box-shadow: 3px 5px 34px 2px rgba(224,221,224,1); 
+	  }
+        .cinput{
+            width: 40%; 
+            background-color: white; 
+            border: 1px solid #ccc; 
+            border-radius: 1px; 
+            height: 40px;
+            text-align: center;
+            }
+      .loadly_titles_sub2{
+                font-family:'Merriweather Sans', sans-serif; 
+                font-size:2.0em;
+                font-weight:800;
+                color: grey;
+            }
+            .button {
+	text-decoration:none;
+	font-family:Arial;
+	box-shadow:inset #ffffff 2px 5px 27px -48px,#01385e 2px 2px 33px;
+	-moz-box-shadow:inset #ffffff 2px 5px 27px -48px,#01385e 2px 2px 33px;
+	-webkit-box-shadow:inset #ffffff 2px 5px 27px -48px,#01385e 2px 2px 33px;
+	background: grey;
+	background:-o-linear-gradient(90deg, grey, grey);
+	background:-moz-linear-gradient( center top, #2fe699 5%, #2fe699 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #2fe699), color-stop(1, #ea9605) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ea9605', endColorstr='#ea9605');
+	background:-webkit-linear-gradient(grey, grey);
+	background:-ms-linear-gradient(grey, #ddc08d);
+	background:linear-gradient(grey, grey);
+	text-indent:0px;
+	line-height:30px;
+	-moz-border-radius:0px;
+	-webkit-border-radius:0px;
+	border-radius:0px;
+	text-align:center;
+	vertical-align:middle;
+	display:inline-block;
+	font-size:20px;
+	color: black;
+	width:30%;
+	height:40px;
+	margin-top: 0px;
+	transition: top ease 0.5s;
+	
+	border-width:0px;
+	border-style:solid;
+}
+        </style>
+
+    </head>
+    <body class="body"> <br />
+        <div style="display:inline-block; width: 30%; vertical-align: top;">
+            <div class="box_shadow" style="display: block; margin-top:190px; margin-left: 35px; border:2px solid black;">
+
+                <img src="elixir_app/stethoscope.jpg"  alt="" width="355" height="250">
+    
+            </div>
+
+        </div>
+        <div style="display:inline-block; width: 60%; vertical-align: top; margin-left: 90px;">
+        <div style="display: block;">
+            
+            <span class="loadly_titles_sub2" style="margin-left: 120px;">WELCOME TO ELIXIR </span> <br />  <br /><span class="loadly_titles_sub2"> CANCER DIAGNOSIS AI BASED SYSTEM</span>
+
+        </div>
+        <div style="display: block; margin-left: 210px; margin-top: 30px; ">
+
+            <img src="elixir_app/logo2.jpg"   class="box_shadow" style="border-radius: 60px;" alt="" width="130" height="80">
+
+        </div>
+        <div style="margin-left: 160px; margin-top: 70px;">
+            <div style="margin-top: 30px; ">
+                <form role="form" action="" method="POST">
+                    {% csrf_token %}
+			    <div style="display: block;">
+				<input id="username" class="cinput" name="username" type="text" placeholder="Username" required/>
+				<label for="username" class="floating__label" data-content="Username"> 
+			   </div>
+					
+			    <div style="display: block; margin-top: 30px;">
+				<input id="password"  class="cinput" name="password" type="password" placeholder="Password" required />
+				<label for="password" class="floating__label" data-content="Password"> 
+               </div>
+               
+               <div class="form-group" style="margin-top: 35px; margin-left: 35px;">
+                <input type="submit" name="login" class="button" value="Login" />
+               </div>
+            </form>
+
+			</div>
+        </div>
+    </div>
+    </body>
+
+</html>
