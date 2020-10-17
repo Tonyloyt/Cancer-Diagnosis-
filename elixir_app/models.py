@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser,User
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
 from django import forms
+# from fontawesome.fields import IconField
 
 # Create your models here.
 import os
