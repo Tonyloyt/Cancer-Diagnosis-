@@ -131,6 +131,13 @@
     color: rgb(61, 9, 9);
     /* font-weight: 800; */
    }
+   .user_name{
+     padding-top: 5px;
+     margin-left: 50px;
+     /* text-align: center; */
+     font-weight: bold;
+     font-size: 1.5em;
+   }
 
 </style>
 
@@ -170,7 +177,9 @@
 
     <body>
         <div style="display: inline-block; width: 25%; height: 100%; background: rgb(2, 49, 53);; vertical-align:top;">
-        <div style="margin-left: 50px; margin-top: 30px;">
+          <div class="user_name"> Welcome , {{ request.user }}</div>
+        <div style="margin-left: 50px; margin-top: 10px;">  
+          
             <span class="loadly_titles_sub2"> Cancer <br /> Diagnosis</span>
 
         </div>
@@ -180,7 +189,7 @@
                 
                 <li style="padding-top: 5px;"> <a href="javascript:showpatientdetails()"> Patient Details</a> </li>
                 <li style="padding-top: 5px;"> <a href="javascript:showDiagnosis()"> Diagnosis</a> </li>
-                <li style="margin-top: 300px"> <a href="#"> Logout </a> </li>
+                <li style="margin-top: 300px"> <a href="{% url 'logoutUser' %}"> Logout </a> </li>
             </ul>
         </div>
 
@@ -212,50 +221,37 @@
 
                 <div> <span class="loadly_titles_sub3" >Patient Details</span></div>
          <form role="form" method="POST"  >
-                        {% csrf_token %}
-                        {{patient_form}}
-        <!-- <div>
+          {% csrf_token %}
+                        
+         <div>
           
             <div style="display: block; margin-top: 10px;">
-				<input id="cardid" class="cinput" name="cardid" type="text" placeholder="Card ID " required/>
-				<label for="cardid" class="floating__label" data-content="Card ID"> 
+              Card ID: <span class="cinput">{{patient_form.cardid}} </span>
                </div>
         
                <div>
                    <div style="display: block; margin-top: 10px;">
-                    <input id="blood" class="cinput" name="blood" type="text" placeholder="Blood Group" />
-				<label for="llood" class="floating__label" data-content="Blood Group"> 
+                    Blood Group:<span class="cinput">{{patient_form.blood}} </span>
+				 
                 
                 </div>
                 <div style="display: block; margin-top: 10px;"> 
-                    <input id="age" class="cinput" name="age" type="text" placeholder="Age" required/>
-                    <label for="age" class="floating__label" data-content="Age"> 
+                    Age: <span class="cinput">{{patient_form.age}} </span>
                 </div>
               
                 <div style="display: block; margin-top: 10px;" > 
-                    <label for="gender">Gender</label>
-                    <select id="order_status" class="cinput" name="gender" required>
-                        <option value="picked">Male</p>
-                        <option value="washed">Female</p>
-
-                       </select>
+                    Gender: <span class="cinput">{{patient_form.gender}} </span>
                 </div>
                </div>
 
                <div style="display: block; margin-top: 10px;">
-				<input id="address" class="cinput" name="address" type="address" placeholder="Address" required/>
-				<label for="address" class="floating__label" data-content="Address"> 
+                Address: <span class="cinput">{{patient_form.address}} </span>
                </div>
 
                <div style="display: block; margin-top: 10px;">
-                <input id="phone" class="cinput" name="phone" type="phone" placeholder="phone" required/>
-            <label for="phone" class="floating__label" data-content="phone">
+                Phone: <span class="cinput">{{patient_form.phone}} </span>
             </div>
-            </div> -->
-            {% for message in messages %}
-            <h2 style="color: green;"> {{ message }}</h2>
-           
-            {% endfor %}
+            </div> 
             
             <p >
                 <input type="submit" name="update" class="button  loadly_contents_fonts " value="Save patient Datails" />
@@ -281,9 +277,9 @@
                     few line of description
                   </div>
                   <div style="margin-top: 20px; margin-left: 20px;">
-                    <div style="display: inline-block; width: 37%; vertical-align: top;"><img src="/static/images/cancer3.jpg'" alt="" width="300" height="200"> </div> 
+                    <div style="display: inline-block; width: 37%; vertical-align: top;"><img src={% static "elixir_app/images/cancer3.jpg" %} alt="" width="300" height="200"> </div> 
                     <div style="display: inline-block; width: 30%; margin-left: 20px; vertical-align: top; margin-left: 50px;">
-                      <div class="exilir_upload">Upload an X-ray Image</div>
+                      <div class="exilir_upload">Upload a microscopic Image</div>
 
 
                       <form role="form" method="POST"  enctype="multipart/form-data">
@@ -295,7 +291,7 @@
                       </form>
 
                     </div>
-                    <div style="display: inline-block; width: 37%; margin-top: 35px; vertical-align: top;"> <img src="cancer2.jpg" alt="" width="300" height="200"> </div> 
+                    <div style="display: inline-block; width: 37%; margin-top: 35px; vertical-align: top;">   <img src={% static "elixir_app/images/cancer2.jpg" %} alt="" width="300" height="200"> </div> 
                     <div style="display: inline-block; width: 30%;  margin-top: 40px; margin-left: 20px; vertical-align: top; margin-left: 50px;">
                       <div class="exilir_upload"> Results  </div>
                      

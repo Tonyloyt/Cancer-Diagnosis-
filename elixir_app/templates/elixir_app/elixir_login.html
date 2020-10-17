@@ -1,4 +1,6 @@
 
+{% load static %}
+
 <html>
     <head>
         <style>
@@ -64,7 +66,7 @@
         <div style="display:inline-block; width: 30%; vertical-align: top;">
             <div class="box_shadow" style="display: block; margin-top:190px; margin-left: 35px; border:2px solid black;">
 
-                <img src="elixir_app/stethoscope.jpg"  alt="" width="355" height="250">
+                <img src= {% static "elixir_app/images/stethoscope.jpg" %}  alt="" width="355" height="250">
     
             </div>
 
@@ -77,13 +79,14 @@
         </div>
         <div style="display: block; margin-left: 210px; margin-top: 30px; ">
 
-            <img src="elixir_app/logo2.jpg"   class="box_shadow" style="border-radius: 60px;" alt="" width="130" height="80">
+            <img src={% static "elixir_app/images/logo2.jpg" %}   class="box_shadow" style="border-radius: 60px;" alt="" width="130" height="80">
 
         </div>
         <div style="margin-left: 160px; margin-top: 70px;">
             <div style="margin-top: 30px; ">
                 <form role="form" action="" method="POST">
                     {% csrf_token %}
+                    {{ form }}
 			    <div style="display: block;">
 				<input id="username" class="cinput" name="username" type="text" placeholder="Username" required/>
 				<label for="username" class="floating__label" data-content="Username"> 
@@ -93,7 +96,12 @@
 				<input id="password"  class="cinput" name="password" type="password" placeholder="Password" required />
 				<label for="password" class="floating__label" data-content="Password"> 
                </div>
-               
+
+               {% for message in messages %}
+              <h2 style="color: red; font-size: medium;"> {{ message }}</h2>
+             
+              {% endfor %}
+
                <div class="form-group" style="margin-top: 35px; margin-left: 35px;">
                 <input type="submit" name="login" class="button" value="Login" />
                </div>

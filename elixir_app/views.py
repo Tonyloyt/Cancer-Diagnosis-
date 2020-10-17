@@ -1,13 +1,15 @@
-from django.shortcuts import render #for rendering htmls
+from django.shortcuts import render,redirect #for rendering htmls
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-
+from django.forms import inlineformset_factory
+from .models import *
 
 from .forms import UploadImage
 from .forms import SavePatientDetails
 from .models import PatientDetails
-from .models import Users_Expert
 from .models import Insert
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
 
 from django.contrib import messages
 
@@ -17,6 +19,24 @@ from django.contrib import messages
 # def index(request):
 #     return HttpResponse("Hello world. You're at the Elixir_app")
 # BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+def elixir_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request,username=username, password=password)
+        if user is not None:
+            login(request,user)
+            return redirect('elixir_dashboard')
+        else:
+            messages.info(request,'Username OR Password is incorrect')
+
+
+        #  context={'form':form}
+    return render(request,'elixir_app/elixir_login.html')
+
+def logoutUser(request):
+    logout(request)
+    return redirect('elixir_login')
 
     
 def elixir_dashboard(request):
