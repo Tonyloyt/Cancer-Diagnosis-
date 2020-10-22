@@ -19,6 +19,7 @@ from django.conf.urls import url
 from django.conf.urls import include
 from elixir_app import views
 from django.conf import settings
+from django.conf.urls.static import static
 from django.http import HttpResponse
 from elixir_app.urls import urlpatterns as elixir_url
 
@@ -29,5 +30,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url('^$', views.elixir_login, name='logpage'),
     url(r'^homepage/', include(elixir_url) ),
-     
-]
+] 
+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
