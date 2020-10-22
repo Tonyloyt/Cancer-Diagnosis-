@@ -44,9 +44,9 @@ def elixir_dashboard(request):
     if request.method == 'POST':
         patient_form = SavePatientDetails(request.POST)
         if patient_form.is_valid():
-            patient_form.save()
-        
-
+           patient_form.save()
+        messages.info(request,'Patient details successfully saved')
+        patient_form = SavePatientDetails()
     context = {'patient_form': patient_form}
     return render(request, 'elixir_app/elixir_dashboard.html', context)
 
