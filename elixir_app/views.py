@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.forms import inlineformset_factory
 from .models import *
+from django.core.files.storage import FileSystemStorage
 
 from .forms import UploadImage
 from .forms import SavePatientDetails
@@ -44,15 +45,20 @@ def elixir_dashboard(request):
     if request.method == 'POST':
         patient_form = SavePatientDetails(request.POST)
         if patient_form.is_valid():
-           patient_form.save()
-        messages.info(request,'Patient details successfully saved')
-        patient_form = SavePatientDetails()
+            patient_form.save()
+        
+
     context = {'patient_form': patient_form}
     return render(request, 'elixir_app/elixir_dashboard.html', context)
-
-
-def home(request):
     
+    #
+""" Model uploading class below"""
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.relpath(__file__)))
+
+def PredictImage(request):
+
     uploadform = UploadImage()
 
     context = {'uploadform': uploadform}
@@ -76,60 +82,55 @@ def home(request):
                 new_file.save()
 
                 # import all import libraries
-                import torch
-                from torchvision import transforms
-                import warnings
+                import os
                 import cv2
-                from torch import nn
-                from torch.autograd import Variable
-                from torchvision import models
-                import time
+                import numpy as np 
+                import pandas as pd
+                import tensorflow as tf
+                from tensorflow import keras
                 from PIL import Image
-                warnings.filterwarnings("ignore")
+                from keras.preprocessing.image import load_img
+                from keras.preprocessing.image import img_to_array
 
-                # create a dataset transformer
-                transformer_input = transforms.Compose(transforms=[
+                #covert image into greyscale
+                # load the image
+                img = load_img(new_file)
+                 
 
-                    transforms.Grayscale(num_output_channels=3),
-                    transforms.Resize((256, 256)),
-                    transforms.ToTensor(),
-                    transforms.Normalize((0.3,), (0.2,))])
+                # convert to numpy array
+            
+                # img = cv2.imread(new_file)
+                # image_array = Image.fromarray(img, 'RGB')
+                image_array = img_to_array(img)
+                # resize_img = image_array.resize((50 , 50))
+                # resize_img = np.array(resize_img).reshape(1,50,50,3)/255.
 
-                """load image, returns tensor"""
-                image = Image.open(os.path.join(BASE_DIR,'images/'+image_name))
-                image = transformer_input(image).float()
-                image = Variable(image, requires_grad=True)
+                #try to load the Model
+                loaded_model = keras.models.load_model('/Model/saved_model.h5')
+                print(loaded_model)
 
-                # load the saved model
-                loaded_model = models.resnet18()
-                num_ftrs = loaded_model.fc.in_features
-                loaded_model.fc = nn.Linear(num_ftrs, 3)
-                loaded_model = torch.load(os.path.join(BASE_DIR,'Model/covid19_model.pth'), map_location='cpu')
-                loaded_model.eval()
-
-                output_single = loaded_model(image.view(1, 3, 256, 256))
-                output_single_proba = torch.exp(output_single)
-                output_sigle_proba_array = output_single_proba.detach().numpy().ravel()
-                proba_user, predict_single = output_single_proba.topk(1, dim=1)
+                #predictions
+                prediction = loaded_model.predict(image_array)
+                index = np.argmax(prediction)
 
                 # labels dictionary
-                labels_dict = {'covid': 0, 'normal': 1, 'pneumonia': 2}
-                prediction = ''
+                labels_dict = {'Normal': 0, 'Cancer': 1}
+                predictions = ''
                 for class_name, class_code in labels_dict.items():  # for name, age in dictionary.iteritems():  (for Python 2.x)
-                    if class_code == predict_single.item():
-                        prediction = class_name
+                    if class_code == index.item():
+                        predictions = class_name
 
-                context = {'uploadform': uploadform,'prediction':prediction}
-                return render(request,'pages/home.html',context=context)
+                context = {'uploadform': uploadform,'prediction':predictions}
+                return render(request,'elixir_app/elixir_dashboard.html',context=context)
 
             else:
                 upladform = UploadImage()
 
-                format_message="Unsupported format, supported format are .png and .jpg ";
+                format_message="Unsupported format, supported format are .png and .jpg "
 
-                return render(request,'pages/home.html',{'fmsg':format_message,'uploadform':upladform})
+                return render(request,'elixir_app/elixir_dashboard.html',{'fmsg':format_message,'uploadform':upladform})
 
         else:
-            return render(request,template_name="pages/home.html",context=context)
+            return render(request,template_name="elixir_app/elixir_dashboard.html",context=context)
 
-    return render(request,template_name="pages/home.html",context=context)
+    return render(request,template_name="elixir_app/elixir_dashboard.html",context=context)
