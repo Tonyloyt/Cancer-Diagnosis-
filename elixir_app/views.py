@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.forms import inlineformset_factory
 from .models import *
-from django.core.files.storage import FileSystemStorage
+from . import views
+from .forms import *
 
 from .forms import UploadImage
 from .forms import SavePatientDetails

@@ -291,7 +291,8 @@
 
                       <form role="form" method="POST"  enctype="multipart/form-data">
                         {% csrf_token %}
-                      <div style="border:2px dotted black; margin-top: 35px;"> <input type="file" id="img" name="img" accept="image/*"></div>
+                        {{ uploadform }}
+                      <!--<div style="border:2px dotted black; margin-top: 35px;"> <input type="file" id="img" name="img" accept="image/*"></div> -->
                       <div style="margin-top: 20px; margin-left: 50px;">
                         <input type="submit" name="update" class="button  loadly_contents_fonts" value="Get Results" />
                         </div>
