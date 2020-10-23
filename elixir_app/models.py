@@ -14,7 +14,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.relpath(__file__)))
 
 
 class Insert(models.Model):
-    filepaths = models.FileField(max_length=200,upload_to=os.path.join(BASE_DIR,'images'))
+    filepaths = models.ImageField(upload_to='images/')
     filename = models.CharField(max_length=100)
     upload_date = models.DateTimeField(default=timezone.now)
 
