@@ -9,7 +9,7 @@ from .forms import *
 from .forms import UploadImage
 from .forms import SavePatientDetails
 from .models import PatientDetails
-from .models import Insert
+from .models import InsertImage
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 
@@ -48,7 +48,8 @@ def elixir_dashboard(request):
         if patient_form.is_valid():
             patient_form.save()
         
-
+        patient_form = SavePatientDetails()
+    messages.info(request, 'Patient data successfully saved!!')
     context = {'patient_form': patient_form}
     return render(request, 'elixir_app/elixir_dashboard.html', context)
     
@@ -56,7 +57,7 @@ def elixir_dashboard(request):
 """ Model uploading class below"""
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.relpath(__file__)))
+#BASE_DIR = os.path.dirname(os.path.dirname(os.path.relpath(__file__)))
 
 def PredictImage(request):
 
@@ -64,7 +65,7 @@ def PredictImage(request):
 
     context = {'uploadform': uploadform}
 
-    if request.method == 'POST' and request.FILES['filename']:
+    if request.method == 'POST'and request.FILES['filename']:
 
         uploadform = UploadImage(request.POST,request.FILES)
 
