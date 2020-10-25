@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from .models import PatientDetails
-from .models import Insert
+from .models import InsertImage
 
 
 
@@ -17,8 +17,8 @@ patient_form = SavePatientDetails()
 
 class UploadImage(forms.ModelForm):
     class Meta:
-        model = Insert
-        fields = ['filepaths','filename','upload_date']
+        model = InsertImage
+        fields = ('filepaths','filename',)
         
     
 

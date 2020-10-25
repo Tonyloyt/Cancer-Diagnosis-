@@ -10,13 +10,14 @@ import os
 
 from django.utils import timezone
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.relpath(__file__)))
 
 
-class Insert(models.Model):
+
+class InsertImage(models.Model):
     filepaths = models.ImageField(upload_to='images/')
     filename = models.CharField(max_length=100)
-    upload_date = models.DateTimeField(default=timezone.now)
+    upload_date= models.DateTimeField(auto_now_add=True)
+   
 
 
 
